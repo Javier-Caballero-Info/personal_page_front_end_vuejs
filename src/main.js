@@ -14,6 +14,7 @@ import router from './router'
 import vmodal from 'vue-js-modal'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.min.css'
+import Notifications from 'vue-notification'
 
 Vue.config.productionTip = false
 
@@ -25,6 +26,8 @@ Vue.use(vmodal, { dynamic: true, dialog: true })
 
 Vue.use(Loading)
 
+Vue.use(Notifications)
+
 fontawesome.library.add(brands, regular, solid)
 
 /* eslint-disable no-new */
@@ -32,5 +35,19 @@ new Vue({
   el: '#app',
   router,
   components: { App },
+  data: {
+    available_langs: [
+      {
+        'value': 'es',
+        'emoji': '🇪🇸'
+      },
+      {
+        'value': 'en',
+        'emoji': '🇺🇸'
+      }
+    ],
+    lang: 'es',
+    lang_emoji: '🇪🇸'
+  },
   template: '<App/>'
 })

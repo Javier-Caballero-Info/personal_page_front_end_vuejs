@@ -1,48 +1,7 @@
 
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
-const items = [
-  {
-    'img': 'https://s3.amazonaws.com/caballerojavier13-pages-files/personal_page/Redes_Sociales/facebook.png',
-    'link': 'https://facebook.com/caballerojavier13',
-    'name': 'Facebook',
-    'lang': 'ES',
-    'order': 1,
-    'id': '-LAWFinWXEGVs2FQH8x1'
-  },
-  {
-    'img': 'https://s3.amazonaws.com/caballerojavier13-pages-files/personal_page/Redes_Sociales/soundcloud.png',
-    'link': 'https://soundcloud.com/caballerojavier13',
-    'name': 'Soundcloud',
-    'lang': 'ES',
-    'order': 2,
-    'id': '-LAdOz8EGGwqekia9Evw'
-  },
-  {
-    'img': 'https://s3.amazonaws.com/caballerojavier13-pages-files/personal_page/Redes_Sociales/soundcloud.png',
-    'link': 'https://soundcloud.com/caballerojavier13',
-    'name': 'Soundcloud',
-    'lang': 'ES',
-    'order': 7,
-    'id': '-LAugBA-nujfKvu1-aQQ'
-  },
-  {
-    'img': 'https://s3.amazonaws.com/caballerojavier13-pages-files/personal_page/Redes_Sociales/soundcloud.png',
-    'link': 'https://soundcloud.com/caballerojavier13',
-    'name': 'Soundcloud',
-    'lang': 'ES',
-    'order': 7,
-    'id': '-LAuzKnOB2gZB5Vj6TU6'
-  },
-  {
-    'img': 'https://s3.amazonaws.com/caballerojavier13-pages-files/personal_page/Redes_Sociales/soundcloud.png',
-    'link': 'https://soundcloud.com/caballerojavier13',
-    'name': 'Soundcloud',
-    'lang': 'ES',
-    'order': 7,
-    'id': '-LAuzUlIuvrGLPjMZO51'
-  }
-]
+import ApiService from '../../../utils/api-service'
 
 export default {
   template: require('./template.html'),
@@ -68,19 +27,59 @@ export default {
           class: 'text-center'
         }
       ],
-      social_network_items: items,
-      selectedName: 'Facebook'
+      social_network_items: null,
+      selectedName: '',
+      lang: this.$root.lang,
+      base_path: '/social-networks'
     }
   },
   methods: {
-    openModalDeleteSocialNetwork: function () {
+    loadList () {
+      const loader = this.$loading.show()
+      ApiService.get('/' + this.lang + this.base_path)
+        .then(response => {
+          this.social_network_items = response.data.data
+          loader.hide()
+        })
+        .catch(() => {
+          this.$notify({
+            group: 'app',
+            title: 'Error',
+            type: 'error',
+            text: 'Can\'t load the information, please try again in a few minutes'
+          })
+          loader.hide()
+        })
+    },
+    openModalDeleteSocialNetwork: function (name) {
+      this.selectedName = name
       this.$modal.show('delete-social-network')
     },
     closeModalDeleteSocialNetwork: function () {
       this.$modal.hide('delete-social-network')
     },
     deleteSocialNetwork: function () {
-      this.$loading.show()
+      // this.loader = this.$loading.show()
+      this.$modal.hide('delete-social-network')
+      this.$notify({
+        group: 'app',
+        title: 'Information',
+        type: 'success',
+        text: 'The social network was deleted successfully'
+      })
+      this.loadList()
+    }
+  },
+  created () {
+    const self = this
+    this.$root.$on('langChanged', function () {
+      self.lang = this.lang
+    })
+    this.loadList()
+  },
+  watch: {
+    lang: function () {
+      this.loadList()
     }
   },
   components: {

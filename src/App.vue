@@ -16,9 +16,14 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
 
-          <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
+          <b-nav-item-dropdown right no-caret>
+            <template slot="text">
+              {{$root.lang_emoji}}
+            </template>
+            <b-dropdown-item href="#" v-for="lang of $root.available_langs" v-bind:key="lang.value"
+              v-on:click="changeLang(lang)" :disabled="$root.lang == lang.value">
+              {{lang.emoji}}
+            </b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
@@ -34,6 +39,9 @@
     </b-navbar>
 
     <b-container>
+
+      <notifications group="auth" position="top center" :speed="1000"/>
+      <notifications group="app" position="top right" :speed="1000"/>
 
       <transition name="fade" mode="out-in" tag="div">
         <router-view/>
@@ -67,6 +75,11 @@ export default {
       window.history.length > 1
         ? this.$router.go(-1)
         : this.$router.push('/')
+    },
+    changeLang (lang) {
+      this.$root.lang = lang.value
+      this.$root.lang_emoji = lang.emoji
+      this.$root.$emit('langChanged')
     }
   }
 }
@@ -102,5 +115,17 @@ export default {
 }
 .v--modal{
   background: none;
+}
+.dropdown-menu{
+  min-width: 0;
+}
+.dropdown-item.disabled, .dropdown-item:disabled{
+  background-color: #36a1b961;
+}
+.vue-dialog{
+  background: white;
+}
+.notifications{
+  top: 62px !important;
 }
 </style>

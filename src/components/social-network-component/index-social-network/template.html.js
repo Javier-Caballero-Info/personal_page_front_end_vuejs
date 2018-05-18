@@ -9,26 +9,36 @@ module.exports = `
     </b-card>
 
     <b-card>
-      <b-table striped hover bordered responsive :items="social_network_items" :fields="social_network_fields" show-empty stacked="md"  align-v="center">
-        <template slot="name" slot-scope="row">
-          <b-img-lazy :src="row.item.img" thumbnail rounded alt="Fluid image" style="height: 36px; width: 36px;"/>
-          <span class="ml-2">{{ row.item.name }}</span>
-        </template>
-        <template slot="actions" slot-scope="row">
-          <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-          <b-button :to="{ name: 'ShowSocialNetwork', params: { id: row.item.id }}" size="sm" class="mr-1" variant="outline-primary" v-b-tooltip.hover title="Show" append>
-            <font-awesome-icon :icon="['fas', 'eye']" />
-          </b-button>
-          <b-button :to="{ name: 'EditSocialNetwork', params: { id: row.item.id }}" size="sm" class="mr-1" variant="outline-primary" v-b-tooltip.hover title="Edit" append>
-            <font-awesome-icon :icon="['fas', 'pencil-alt']" />
-          </b-button>
-          <b-button size="sm" class="mr-1" variant="outline-danger" 
-            v-b-tooltip.hover title="Delete" append
-            v-on:click="openModalDeleteSocialNetwork()">
-            <font-awesome-icon :icon="['fas', 'trash']" />
-          </b-button>
-        </template>
-      </b-table>
+      <div class="table-responsive">
+        <b-table striped hover bordered responsive :items="social_network_items" :fields="social_network_fields" 
+          align-v="center" v-on:update:lang="loadList()">
+          <template slot="name" slot-scope="row">
+            <div style="min-width: 140px;">
+            <b-img-lazy :src="row.item.img" thumbnail rounded alt="Fluid image" style="height: 36px; width: 36px;"/>
+            <span class="ml-2">{{ row.item.name }}</span>
+          </div>
+          </template>
+          <template slot="link" slot-scope="row" class="text-truncate">
+            <a :href="row.item.link" target="_blank" class="text-truncate">{{ row.item.link }}</a>
+          </template>
+          <template slot="actions" slot-scope="row">
+            <div style="min-width:118px">
+              <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
+              <b-button :to="{ name: 'ShowSocialNetwork', params: { id: row.item.id }}" size="sm" variant="outline-primary" v-b-tooltip.hover title="Show" append>
+                <font-awesome-icon :icon="['fas', 'eye']" />
+              </b-button>
+              <b-button :to="{ name: 'EditSocialNetwork', params: { id: row.item.id }}" size="sm" variant="outline-primary" v-b-tooltip.hover title="Edit" append>
+                <font-awesome-icon :icon="['fas', 'pencil-alt']" />
+              </b-button>
+              <b-button size="sm" variant="outline-danger" 
+                v-b-tooltip.hover title="Delete" append
+                v-on:click="openModalDeleteSocialNetwork(row.item.name)">
+                <font-awesome-icon :icon="['fas', 'trash']" />
+              </b-button>
+            </div>
+          </template>
+        </b-table>
+      </div>
     </b-card>
 
 

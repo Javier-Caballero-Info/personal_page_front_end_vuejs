@@ -1,21 +1,36 @@
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
-const socialNetwork = {
-  'img': 'https://s3.amazonaws.com/caballerojavier13-pages-files/personal_page/Redes_Sociales/facebook.png',
-  'link': 'https://facebook.com/caballerojavier13',
-  'name': 'Facebook',
-  'order': 1,
-  'lang': 'ES',
-  'id': '-LAWFinWXEGVs2FQH8x1'
-}
+import ApiService from '../../../utils/api-service'
 
 export default {
   template: require('./template.html'),
   name: 'ShowSocialNetwork',
   data () {
     return {
-      socialNetwork: socialNetwork // this.$route.params.id
+      socialNetwork: null
     }
+  },
+  methods: {
+    loadSocialNetwork () {
+      const loader = this.$loading.show()
+      ApiService.get('/' + this.lang + this.base_path + '/' + this.$route.params.id)
+        .then(response => {
+          this.socialNetwork = response.data.data
+          loader.hide()
+        })
+        .catch(() => {
+          this.$notify({
+            group: 'app',
+            title: 'Error',
+            type: 'error',
+            text: 'Can\'t load the information, please try again in a few minutes'
+          })
+          loader.hide()
+        })
+    }
+  },
+  created () {
+    this.loadSocialNetwork()
   },
   components: {
     FontAwesomeIcon
