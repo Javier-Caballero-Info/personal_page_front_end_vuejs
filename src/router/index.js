@@ -12,6 +12,11 @@ import ShowContact from '@/components/contact-component/show-contact/ShowContact
 import CreateContact from '@/components/contact-component/create-contact/CreateContact'
 import EditContact from '@/components/contact-component/edit-contact/EditContact'
 
+import IndexWork from '@/components/work-component/index-work/IndexWork'
+import ShowWork from '@/components/work-component/show-work/ShowWork'
+import CreateWork from '@/components/work-component/create-work/CreateWork'
+import EditWork from '@/components/work-component/edit-work/EditWork'
+
 Vue.use(Router)
 
 export default new Router({
@@ -74,6 +79,33 @@ export default new Router({
       path: '/contacts/:id/edit',
       name: 'EditContact',
       component: EditContact
+    },
+
+    /*
+    ======================
+      > Contact <
+    ======================
+    */
+
+    {
+      path: '/works',
+      name: 'IndexWork',
+      component: IndexWork
+    },
+    {
+      path: '/works/new',
+      name: 'CreateWork',
+      component: CreateWork
+    },
+    {
+      path: '/works/:id',
+      name: 'ShowWork',
+      component: ShowWork
+    },
+    {
+      path: '/works/:id/edit',
+      name: 'EditWork',
+      component: EditWork
     }
 
   ]

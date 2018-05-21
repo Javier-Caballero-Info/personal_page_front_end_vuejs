@@ -10,6 +10,9 @@
       <b-collapse is-nav id="nav_collapse">
 
         <b-navbar-nav>
+          <b-nav-item-dropdown text="Biography">
+            <b-dropdown-item :to="{ name: 'IndexWork'}">Work</b-dropdown-item>
+          </b-nav-item-dropdown>
           <b-nav-item :to="{ name: 'IndexSocialNetwork'}"> Social Networks </b-nav-item>
           <b-nav-item :to="{ name: 'IndexContact'}"> Contacts </b-nav-item>
         </b-navbar-nav>
@@ -128,5 +131,9 @@ export default {
 }
 .notifications{
   top: 62px !important;
+}
+textarea{
+  resize: none;
+  height: 230px;
 }
 </style>

@@ -5,21 +5,21 @@ import ApiService from '../../../utils/api-service'
 
 export default {
   template: require('./template.html'),
-  name: 'IndexContact',
+  name: 'IndexWork',
   data () {
     return {
-      contact_fields: [
+      work_fields: [
         {
-          key: 'name',
-          label: 'Name'
+          key: 'time',
+          label: 'Time'
         },
         {
-          key: 'icon',
-          label: 'Icon'
+          key: 'company',
+          label: 'Company'
         },
         {
-          key: 'info',
-          label: 'Information'
+          key: 'position',
+          label: 'Position'
         },
         {
           key: 'order',
@@ -31,10 +31,10 @@ export default {
           class: 'text-center'
         }
       ],
-      contact_items: [],
-      selected_contact: {name: ''},
+      work_items: [],
+      selected_work: {name: ''},
       lang: this.$root.lang,
-      base_path: '/contacts'
+      base_path: '/works'
     }
   },
   methods: {
@@ -42,7 +42,7 @@ export default {
       const loader = this.$loading.show()
       ApiService.get('/' + this.lang + this.base_path)
         .then(response => {
-          this.contact_items = response.data.data
+          this.work_items = response.data.data
           loader.hide()
         })
         .catch(() => {
@@ -55,24 +55,24 @@ export default {
           loader.hide()
         })
     },
-    openModalDeleteContact: function (contact) {
-      this.selected_contact = contact
-      this.$modal.show('delete-contact')
+    openModalDeleteWork: function (work) {
+      this.selected_work = work
+      this.$modal.show('delete-work')
     },
-    closeModalDeleteContact: function () {
-      this.$modal.hide('delete-contact')
+    closeModalDeleteWork: function () {
+      this.$modal.hide('delete-work')
     },
-    deleteContact: function () {
+    deleteWork: function () {
       const loader = this.$loading.show()
-      ApiService.delete('/' + this.lang + this.base_path + '/' + this.selected_contact.id)
+      ApiService.delete('/' + this.lang + this.base_path + '/' + this.selected_work.id)
         .then(response => {
           loader.hide()
-          this.$modal.hide('delete-contact')
+          this.$modal.hide('delete-work')
           this.$notify({
             group: 'app',
             title: 'Information',
             type: 'success',
-            text: 'The contact was deleted successfully'
+            text: 'The work was deleted successfully'
           })
           this.loadList()
         })
