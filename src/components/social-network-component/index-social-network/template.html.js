@@ -1,10 +1,16 @@
 module.exports = `
   <div class="social-network mt-4">
-    <h1 class="title text-left"> <small><font-awesome-icon :icon="['fas', 'rocket']" /> </small> List Social Networks </h1>
+    <h1 class="title text-left"> 
+      <small><font-awesome-icon :icon="['fas', 'rocket']" /> </small> 
+      Social Networks List
+    </h1>
     <hr/>
     <b-card class="mb-4">
-        <b-button :to="{ name: 'CreateSocialNetwork'}" class="mr-1 float-right" variant="outline-success" v-b-tooltip.hover title="Create">
-          <font-awesome-icon :icon="['fas', 'plus']" /> New Social Network
+        <b-button v-on:click="loadList()" variant="outline-secondary" v-b-tooltip.hover title="Create">
+          <font-awesome-icon :icon="['fas', 'sync']" /> Reload list
+        </b-button>
+        <b-button :to="{ name: 'CreateSocialNetwork'}" class="float-right" variant="outline-success" v-b-tooltip.hover title="Create">
+          <font-awesome-icon :icon="['fas', 'plus']" /> New social network
         </b-button>
     </b-card>
 
@@ -32,7 +38,7 @@ module.exports = `
               </b-button>
               <b-button size="sm" variant="outline-danger" 
                 v-b-tooltip.hover title="Delete" append
-                v-on:click="openModalDeleteSocialNetwork(row.item.name)">
+                v-on:click="openModalDeleteSocialNetwork(row.item)">
                 <font-awesome-icon :icon="['fas', 'trash']" />
               </b-button>
             </div>
@@ -51,7 +57,7 @@ module.exports = `
           </button>
         </div>
         <div class="modal-body">
-          <p class="mb-0">Are you sure that you want delete the social media "{{selectedName}}"?</p>
+          <p class="mb-0">Are you sure that you want delete the social media "{{selected_social_network.name}}"?</p>
         </div>
         <div class="modal-footer">
           <div class="row">

@@ -7,7 +7,9 @@ export default {
   name: 'ShowSocialNetwork',
   data () {
     return {
-      socialNetwork: null
+      socialNetwork: null,
+      lang: this.$root.lang,
+      base_path: '/social-networks'
     }
   },
   methods: {
@@ -31,6 +33,10 @@ export default {
   },
   created () {
     this.loadSocialNetwork()
+    const self = this
+    this.$root.$on('langChanged', function () {
+      self.$router.push({name: 'IndexSocialNetwork'})
+    })
   },
   components: {
     FontAwesomeIcon

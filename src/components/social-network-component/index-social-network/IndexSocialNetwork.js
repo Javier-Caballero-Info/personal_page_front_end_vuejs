@@ -28,7 +28,7 @@ export default {
         }
       ],
       social_network_items: null,
-      selectedName: '',
+      selected_social_network: {name: ''},
       lang: this.$root.lang,
       base_path: '/social-networks'
     }
@@ -51,23 +51,36 @@ export default {
           loader.hide()
         })
     },
-    openModalDeleteSocialNetwork: function (name) {
-      this.selectedName = name
+    openModalDeleteSocialNetwork: function (socialNetwork) {
+      this.selected_social_network = socialNetwork
       this.$modal.show('delete-social-network')
     },
     closeModalDeleteSocialNetwork: function () {
       this.$modal.hide('delete-social-network')
     },
     deleteSocialNetwork: function () {
-      // this.loader = this.$loading.show()
-      this.$modal.hide('delete-social-network')
-      this.$notify({
-        group: 'app',
-        title: 'Information',
-        type: 'success',
-        text: 'The social network was deleted successfully'
-      })
-      this.loadList()
+      const loader = this.$loading.show()
+      ApiService.delete('/' + this.lang + this.base_path + '/' + this.selected_social_network.id)
+        .then(response => {
+          loader.hide()
+          this.$modal.hide('delete-social-network')
+          this.$notify({
+            group: 'app',
+            title: 'Information',
+            type: 'success',
+            text: 'The social network was deleted successfully'
+          })
+          this.loadList()
+        })
+        .catch(() => {
+          this.$notify({
+            group: 'app',
+            title: 'Error',
+            type: 'error',
+            text: 'Can\'t load the information, please try again in a few minutes'
+          })
+          loader.hide()
+        })
     }
   },
   created () {

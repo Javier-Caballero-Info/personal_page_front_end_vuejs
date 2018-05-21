@@ -1,5 +1,7 @@
 module.exports = `
   <div class="social-network mt-4 mb-4">
+
+  <b-form @submit="onSubmit">
     
     <h2 class="title text-left"> <small><font-awesome-icon :icon="['fas', 'rocket']" /> </small> Create Social Network </h2>
     
@@ -113,9 +115,11 @@ module.exports = `
         <font-awesome-icon :icon="['fas', 'chevron-left']" /> Back
     </b-button>
 
-    <b-button type="submit" variant="primary">
+    <b-button type="submit" variant="primary" :disabled="errors.items.length > 0">
       <font-awesome-icon :icon="['fas', 'save']" /> Save
     </b-button>
+
+  </b-form>
 
   </div>
 `

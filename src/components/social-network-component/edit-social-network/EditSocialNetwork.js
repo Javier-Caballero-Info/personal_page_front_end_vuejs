@@ -4,10 +4,12 @@ import ApiService from '../../../utils/api-service'
 
 export default {
   template: require('./template.html'),
-  name: 'ShowSocialNetwork',
+  name: 'EditSocialNetwork',
   data () {
     return {
-      socialNetwork: null
+      socialNetwork: null,
+      lang: this.$root.lang,
+      base_path: '/social-networks'
     }
   },
   methods: {
@@ -27,10 +29,32 @@ export default {
           })
           loader.hide()
         })
+    },
+    onSubmit (evt) {
+      evt.preventDefault()
+      const loader = this.$loading.show()
+      ApiService.put('/' + this.lang + this.base_path + '/' + this.$route.params.id, this.socialNetwork)
+        .then(response => {
+          this.$router.push({name: 'IndexSocialNetwork'})
+          loader.hide()
+        })
+        .catch(() => {
+          this.$notify({
+            group: 'app',
+            title: 'Error',
+            type: 'error',
+            text: 'Error on save Social Network please try again in a few minutes.'
+          })
+          loader.hide()
+        })
     }
   },
   created () {
     this.loadSocialNetwork()
+    const self = this
+    this.$root.$on('langChanged', function () {
+      self.$router.push({name: 'IndexSocialNetwork'})
+    })
   },
   components: {
     FontAwesomeIcon
