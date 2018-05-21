@@ -7,6 +7,11 @@ import ShowSocialNetwork from '@/components/social-network-component/show-social
 import CreateSocialNetwork from '@/components/social-network-component/create-social-network/CreateSocialNetwork'
 import EditSocialNetwork from '@/components/social-network-component/edit-social-network/EditSocialNetwork'
 
+import IndexContact from '@/components/contact-component/index-contact/IndexContact'
+import ShowContact from '@/components/contact-component/show-contact/ShowContact'
+import CreateContact from '@/components/contact-component/create-contact/CreateContact'
+import EditContact from '@/components/contact-component/edit-contact/EditContact'
+
 Vue.use(Router)
 
 export default new Router({
@@ -42,6 +47,34 @@ export default new Router({
       path: '/social-networks/:id/edit',
       name: 'EditSocialNetwork',
       component: EditSocialNetwork
+    },
+
+    /*
+    ======================
+      > Contact <
+    ======================
+    */
+
+    {
+      path: '/contacts',
+      name: 'IndexContact',
+      component: IndexContact
+    },
+    {
+      path: '/contacts/new',
+      name: 'CreateContact',
+      component: CreateContact
+    },
+    {
+      path: '/contacts/:id',
+      name: 'ShowContact',
+      component: ShowContact
+    },
+    {
+      path: '/contacts/:id/edit',
+      name: 'EditContact',
+      component: EditContact
     }
+
   ]
 })

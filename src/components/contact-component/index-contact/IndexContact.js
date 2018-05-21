@@ -5,17 +5,21 @@ import ApiService from '../../../utils/api-service'
 
 export default {
   template: require('./template.html'),
-  name: 'IndexSocialNetwork',
+  name: 'IndexContact',
   data () {
     return {
-      social_network_fields: [
+      contact_fields: [
         {
           key: 'name',
           label: 'Name'
         },
         {
-          key: 'link',
-          label: 'Link'
+          key: 'icon',
+          label: 'Icon'
+        },
+        {
+          key: 'info',
+          label: 'Information'
         },
         {
           key: 'order',
@@ -27,10 +31,10 @@ export default {
           class: 'text-center'
         }
       ],
-      social_network_items: [],
-      selected_social_network: {name: ''},
+      contact_items: [],
+      selected_contact: {name: ''},
       lang: this.$root.lang,
-      base_path: '/social-networks'
+      base_path: '/contacts'
     }
   },
   methods: {
@@ -38,7 +42,7 @@ export default {
       const loader = this.$loading.show()
       ApiService.get('/' + this.lang + this.base_path)
         .then(response => {
-          this.social_network_items = response.data.data
+          this.contact_items = response.data.data
           loader.hide()
         })
         .catch(() => {
@@ -51,24 +55,24 @@ export default {
           loader.hide()
         })
     },
-    openModalDeleteSocialNetwork: function (socialNetwork) {
-      this.selected_social_network = socialNetwork
-      this.$modal.show('delete-social-network')
+    openModalDeleteContact: function (Contact) {
+      this.selected_contact = Contact
+      this.$modal.show('delete-contact')
     },
-    closeModalDeleteSocialNetwork: function () {
-      this.$modal.hide('delete-social-network')
+    closeModalDeleteContact: function () {
+      this.$modal.hide('delete-contact')
     },
-    deleteSocialNetwork: function () {
+    deleteContact: function () {
       const loader = this.$loading.show()
-      ApiService.delete('/' + this.lang + this.base_path + '/' + this.selected_social_network.id)
+      ApiService.delete('/' + this.lang + this.base_path + '/' + this.selected_contact.id)
         .then(response => {
           loader.hide()
-          this.$modal.hide('delete-social-network')
+          this.$modal.hide('delete-contact')
           this.$notify({
             group: 'app',
             title: 'Information',
             type: 'success',
-            text: 'The social network was deleted successfully'
+            text: 'The contact was deleted successfully'
           })
           this.loadList()
         })
