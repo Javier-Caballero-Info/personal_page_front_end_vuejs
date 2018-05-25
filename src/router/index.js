@@ -27,7 +27,6 @@ import ShowResearch from '@/components/research-component/show-research/ShowRese
 import CreateResearch from '@/components/research-component/create-research/CreateResearch'
 import EditResearch from '@/components/research-component/edit-research/EditResearch'
 
-
 import IndexScholastic from '@/components/scholastic-component/index-scholastic/IndexScholastic'
 import ShowScholastic from '@/components/scholastic-component/show-scholastic/ShowScholastic'
 import CreateScholastic from '@/components/scholastic-component/create-scholastic/CreateScholastic'
