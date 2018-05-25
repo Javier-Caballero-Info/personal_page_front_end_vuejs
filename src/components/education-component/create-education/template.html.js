@@ -1,27 +1,30 @@
 module.exports = `
-  <div class="work mt-4 mb-4">
+  <div class="education mt-4 mb-4">
 
-  <b-form @submit="onSubmit">
-    
-    <h2 class="title text-left"> <small><font-awesome-icon :icon="['fas', 'rocket']" /> </small> Create Work </h2>
+    <b-form @submit="onSubmit">
+        
+    <h2 class="title text-left"> <small><font-awesome-icon :icon="['fas', 'rocket']" /> </small> Create Education </h2>
     
     <hr/>
 
+    <div v-if="education">   
+    
     <b-card class="mb-2">
-      <h1 class="text-center mb-0" v-show="!errors.has('time')"> {{work.time}} </h1>
+      <h1 class="text-center mb-0" v-show="!errors.has('time')"> {{education.time}} </h1>
     </b-card>
+ 
     <b-card class="mb-2">
 
       <div class="">
 
-        <b-form-group id="Work_Time_Group"
+        <b-form-group id="Education_Time_Group"
                 label="Time:"
-                label-for="Work_Time">
-          <b-form-input id="Work_Time"
+                label-for="Education_Time">
+          <b-form-input id="Education_Time"
                         name="time"
                         type="text"
                         v-validate.initial="{ required: true, regex: /.* - .*/ }"
-                        v-model="work.time"
+                        v-model="education.time"
                         required
                         :class="{'input': true, 'is-invalid': errors.has('time'), 'is-valid': !errors.has('time')}"
                         placeholder="Time">
@@ -32,68 +35,66 @@ module.exports = `
 
         </b-form-group>
 
-        <b-form-group id="Work_Company_Group"
-                label="Company:"
-                label-for="Work_Company">
-          <b-form-input id="Work_Company"
-                        name="company"
+        <b-form-group id="Education_Institute_Group"
+                label="Institute:"
+                label-for="Education_Institute">
+          <b-form-input id="Education_Institute"
+                        name="institute"
                         type="text"
                         v-validate.initial="'required'"
-                        v-model="work.company"
+                        v-model="education.institute"
                         required
-                        :class="{'input': true, 'is-invalid': errors.has('company'), 'is-valid': !errors.has('company')}"
-                        placeholder="Company">
+                        :class="{'input': true, 'is-invalid': errors.has('institute'), 'is-valid': !errors.has('institute')}"
+                        placeholder="Institute">
           </b-form-input>
           <p class="invalid-feedback">
-            <span v-show="errors.has('company')" class="help">{{ errors.first('company') }}</span>
+            <span v-show="errors.has('institute')" class="help">{{ errors.first('institute') }}</span>
           </p>
 
         </b-form-group>
 
-        <b-form-group id="Work_Position_Group"
-                label="Position:"
-                label-for="Work_Position">
-          <b-form-input id="Work_Position"
-                        name="position"
+        <b-form-group id="Education_Career_Group"
+                label="Career:"
+                label-for="Education_Career">
+          <b-form-input id="Education_Career"
+                        name="career"
                         type="text"
-                        v-validate.initial="'required'"
-                        v-model="work.position"
-                        required
-                        :class="{'input': true, 'is-invalid': errors.has('position'), 'is-valid': !errors.has('position')}"
-                        placeholder="Position">
+                        v-model="education.career"
+                        :class="{'input': true, 'is-invalid': errors.has('career'), 'is-valid': !errors.has('career')}"
+                        placeholder="Career">
           </b-form-input>
           <p class="invalid-feedback">
-            <span v-show="errors.has('position')" class="help">{{ errors.first('position') }}</span>
+            <span v-show="errors.has('career')" class="help">{{ errors.first('career') }}</span>
           </p>
 
         </b-form-group>
 
-        <b-form-group id="Work_Description_Group"
-                label="Description:"
-                label-for="Work_Description">
-          <b-form-textarea id="Work_Description"
-                        name="description"
+        <b-form-group id="Education_Detail_Group"
+                label="Detail:"
+                label-for="Education_Detail">
+          <b-form-textarea id="Education_Detail"
+                        name="detail"
                         v-validate.initial="'required'"
-                        v-model="work.description"
+                        v-model="education.detail"
                         required
-                        :class="{'input': true, 'is-invalid': errors.has('description'), 'is-valid': !errors.has('description')}"
-                        placeholder="Description">
+                        :class="{'input': true, 'is-invalid': errors.has('detail'), 'is-valid': !errors.has('detail')}"
+                        placeholder="Detail">
           </b-form-textarea>
           <p class="invalid-feedback">
-            <span v-show="errors.has('description')" class="help">{{ errors.first('description') }}</span>
+            <span v-show="errors.has('detail')" class="help">{{ errors.first('detail') }}</span>
           </p>
 
         </b-form-group>
 
-        <b-form-group id="work_Order_Group"
+        <b-form-group id="Education_Order_Group"
                 label="Order:"
-                label-for="work_Order">
-          <b-form-input id="work_Order"
+                label-for="Education_Order">
+          <b-form-input id="Education_Order"
                         name="order"
                         type="number"
                         min="0"
                         step="1"
-                        v-model="work.order"
+                        v-model="education.order"
                         v-validate.initial="'required|numeric|min_value:0'"
                         required
                         :class="{'input': true, 'is-invalid': errors.has('order'), 'is-valid': !errors.has('order')}"
@@ -104,19 +105,19 @@ module.exports = `
           </p>
         </b-form-group>
 
-        <b-form-group id="work_Lang_Group"
+        <b-form-group id="Education_Lang_Group"
                 label="Language:"
-                label-for="work_Lang">
-          <b-form-input id="work_Lang"
+                label-for="Education_Lang">
+          <b-form-input id="education_Lang"
                         name="lang"
                         type="text"
-                        v-model="work.lang"
+                        v-model="education.lang"
                         disabled
                         placeholder="Language">
           </b-form-input>
         </b-form-group>
 
-      </div>  
+  </div>  
 
     </b-card> 
 

@@ -12,6 +12,9 @@
         <b-navbar-nav>
           <b-nav-item-dropdown text="Biography">
             <b-dropdown-item :to="{ name: 'IndexWork'}">Work</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'IndexEducation'}">Education</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'IndexResearch'}">Research</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'IndexScholastic'}">Scholastic</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item :to="{ name: 'IndexSocialNetwork'}"> Social Networks </b-nav-item>
           <b-nav-item :to="{ name: 'IndexContact'}"> Contacts </b-nav-item>
@@ -63,11 +66,13 @@
 <script>
 
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import {Emoji} from 'emoji-mart-vue'
 
 export default {
   name: 'App',
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    Emoji
   },
   data () {
     return {
@@ -135,5 +140,10 @@ export default {
 textarea{
   resize: none;
   height: 230px;
+}
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #17a2b8;
 }
 </style>

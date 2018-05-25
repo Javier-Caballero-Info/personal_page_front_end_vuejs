@@ -15,10 +15,13 @@ import vmodal from 'vue-js-modal'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.min.css'
 import Notifications from 'vue-notification'
+import { Emoji } from 'emoji-mart-vue'
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
+
+Vue.use(Emoji)
 
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})
 

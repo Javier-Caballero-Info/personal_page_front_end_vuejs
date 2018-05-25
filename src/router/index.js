@@ -17,6 +17,22 @@ import ShowWork from '@/components/work-component/show-work/ShowWork'
 import CreateWork from '@/components/work-component/create-work/CreateWork'
 import EditWork from '@/components/work-component/edit-work/EditWork'
 
+import IndexEducation from '@/components/education-component/index-education/IndexEducation'
+import ShowEducation from '@/components/education-component/show-education/ShowEducation'
+import CreateEducation from '@/components/education-component/create-education/CreateEducation'
+import EditEducation from '@/components/education-component/edit-education/EditEducation'
+
+import IndexResearch from '@/components/research-component/index-research/IndexResearch'
+import ShowResearch from '@/components/research-component/show-research/ShowResearch'
+import CreateResearch from '@/components/research-component/create-research/CreateResearch'
+import EditResearch from '@/components/research-component/edit-research/EditResearch'
+
+
+import IndexScholastic from '@/components/scholastic-component/index-scholastic/IndexScholastic'
+import ShowScholastic from '@/components/scholastic-component/show-scholastic/ShowScholastic'
+import CreateScholastic from '@/components/scholastic-component/create-scholastic/CreateScholastic'
+import EditScholastic from '@/components/scholastic-component/edit-scholastic/EditScholastic'
+
 Vue.use(Router)
 
 export default new Router({
@@ -29,7 +45,7 @@ export default new Router({
 
     /*
     ======================
-      > Social Network <
+    > Social Network <
     ======================
     */
 
@@ -56,7 +72,7 @@ export default new Router({
 
     /*
     ======================
-      > Contact <
+    > Contact <
     ======================
     */
 
@@ -83,7 +99,7 @@ export default new Router({
 
     /*
     ======================
-      > Contact <
+    > Work <
     ======================
     */
 
@@ -106,6 +122,87 @@ export default new Router({
       path: '/works/:id/edit',
       name: 'EditWork',
       component: EditWork
+    },
+
+    /*
+    ======================
+    > Education <
+    ======================
+    */
+
+    {
+      path: '/educations',
+      name: 'IndexEducation',
+      component: IndexEducation
+    },
+    {
+      path: '/educations/new',
+      name: 'CreateEducation',
+      component: CreateEducation
+    },
+    {
+      path: '/educations/:id',
+      name: 'ShowEducation',
+      component: ShowEducation
+    },
+    {
+      path: '/educations/:id/edit',
+      name: 'EditEducation',
+      component: EditEducation
+    },
+
+    /*
+    ======================
+    > Research <
+    ======================
+    */
+
+    {
+      path: '/researches',
+      name: 'IndexResearch',
+      component: IndexResearch
+    },
+    {
+      path: '/researches/new',
+      name: 'CreateResearch',
+      component: CreateResearch
+    },
+    {
+      path: '/researches/:id',
+      name: 'ShowResearch',
+      component: ShowResearch
+    },
+    {
+      path: '/researches/:id/edit',
+      name: 'EditResearch',
+      component: EditResearch
+    },
+
+    /*
+    ======================
+    > Scholastic <
+    ======================
+    */
+
+    {
+      path: '/scholastic',
+      name: 'IndexScholastic',
+      component: IndexScholastic
+    },
+    {
+      path: '/scholastic/new',
+      name: 'CreateScholastic',
+      component: CreateScholastic
+    },
+    {
+      path: '/scholastic/:id',
+      name: 'ShowScholastic',
+      component: ShowScholastic
+    },
+    {
+      path: '/scholastic/:id/edit',
+      name: 'EditScholastic',
+      component: EditScholastic
     }
 
   ]

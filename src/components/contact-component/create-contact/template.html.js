@@ -1,5 +1,5 @@
 module.exports = `
-  <div class="social-network mt-4 mb-4">
+  <div class="contact mt-4 mb-4">
 
   <b-form @submit="onSubmit">
     
@@ -20,10 +20,10 @@ module.exports = `
 
         <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0 mt-4">
 
-            <b-form-group id="contact_Name_Group"
+            <b-form-group id="Contact_Name_Group"
                     label="Name:"
-                    label-for="contact_Name">
-              <b-form-input id="contact_Name"
+                    label-for="Contact_Name">
+              <b-form-input id="Contact_Name"
                             name="name"
                             type="text"
                             v-validate.initial="'required'"
@@ -38,10 +38,10 @@ module.exports = `
 
             </b-form-group>
 
-            <b-form-group id="contact_Link_Group"
+            <b-form-group id="Contact_Link_Group"
                     label="Icon:"
-                    label-for="contact_Icon">
-              <b-form-input id="contact_Icon"
+                    label-for="Contact_Icon">
+              <b-form-input id="Contact_Icon"
                             name="icon"
                             type="text"
                             v-validate.initial="'required'"
@@ -55,10 +55,10 @@ module.exports = `
               </p>
             </b-form-group>
 
-            <b-form-group id="contact_Info_Group"
+            <b-form-group id="Contact_Info_Group"
                     label="Information:"
-                    label-for="contact_Info">
-              <b-form-input id="contact_Info"
+                    label-for="Contact_Info">
+              <b-form-input id="Contact_Info"
                             name="info"
                             type="text"
                             v-validate.initial="'required'"
@@ -72,10 +72,10 @@ module.exports = `
               </p>
             </b-form-group>
 
-            <b-form-group id="contact_Img_Group"
+            <b-form-group id="Contact_Img_Group"
                     label="Image:"
-                    label-for="contact_Img">
-              <b-form-input id="contact_Img"
+                    label-for="Contact_Img">
+              <b-form-input id="Contact_Img"
                             name="img"
                             type="url"
                             v-model="contact.img"
@@ -89,10 +89,10 @@ module.exports = `
               </p>
             </b-form-group>
 
-            <b-form-group id="contact_Order_Group"
+            <b-form-group id="Contact_Order_Group"
                     label="Order:"
-                    label-for="contact_Order">
-              <b-form-input id="contact_Order"
+                    label-for="Contact_Order">
+              <b-form-input id="Contact_Order"
                             name="order"
                             type="number"
                             min="0"
@@ -108,10 +108,10 @@ module.exports = `
               </p>
             </b-form-group>
 
-            <b-form-group id="contact_Lang_Group"
+            <b-form-group id="Contact_Lang_Group"
                     label="Language:"
-                    label-for="contact_Order_Lang">
-              <b-form-input id="contact_Order_Lang"
+                    label-for="Contact_Lang">
+              <b-form-input id="Contact_Lang"
                             name="lang"
                             type="text"
                             v-model="contact.lang"

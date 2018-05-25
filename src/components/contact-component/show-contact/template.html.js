@@ -1,5 +1,5 @@
 module.exports = `
-  <div class="social-network mt-4 mb-4">
+  <div class="contact mt-4 mb-4">
     
     <h2 class="title text-left"> <small><font-awesome-icon :icon="['fas', 'rocket']" /> </small> View Contact </h2>
     

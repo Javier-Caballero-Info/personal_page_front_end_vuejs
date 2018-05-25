@@ -93,8 +93,8 @@ module.exports = `
 
             <b-form-group id="socialNetwork_Lang_Group"
                     label="Language:"
-                    label-for="socialNetwork_Order_Lang">
-              <b-form-input id="socialNetwork_Order_Lang"
+                    label-for="socialNetwork_Lang">
+              <b-form-input id="socialNetwork_Lang"
                             name="lang"
                             type="text"
                             v-model="socialNetwork.lang"
