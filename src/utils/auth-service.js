@@ -36,6 +36,25 @@ export default {
       .catch(() => {
         errorCallback()
       })
+  },
+  renewToken () {
+    return new Promise((resolve, reject) => {
+      axios.create({
+        baseURL: process.env.AUTH_URI,
+        timeout: 5000,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('refresh_token')
+        }
+      })
+        .put('/v1/session')
+        .then(response => {
+          localStorage.setItem('access_token', response.data.access_token)
+          resolve(response)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
   }
-
 }

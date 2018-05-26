@@ -20,7 +20,7 @@ export default {
   methods: {
     loadEducation () {
       const loader = this.$loading.show()
-      ApiService.get('/' + this.lang + this.base_path + '/' + this.$route.params.id)
+      ApiService.getResource('/' + this.lang + this.base_path + '/' + this.$route.params.id)
         .then(response => {
           this.education = response.data.data
           loader.hide()

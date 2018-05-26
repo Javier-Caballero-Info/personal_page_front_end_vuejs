@@ -41,7 +41,7 @@ export default {
   methods: {
     loadList () {
       const loader = this.$loading.show()
-      ApiService.get('/' + this.lang + this.base_path)
+      ApiService.getResource('/' + this.lang + this.base_path)
         .then(response => {
           this.social_network_items = response.data.data
           loader.hide()
@@ -65,7 +65,7 @@ export default {
     },
     deleteSocialNetwork: function () {
       const loader = this.$loading.show()
-      ApiService.delete('/' + this.lang + this.base_path + '/' + this.selected_social_network.id)
+      ApiService.deleteResource('/' + this.lang + this.base_path + '/' + this.selected_social_network.id)
         .then(response => {
           loader.hide()
           this.$modal.hide('delete-social-network')

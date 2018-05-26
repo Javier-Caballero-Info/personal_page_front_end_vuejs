@@ -75,7 +75,7 @@ export default {
     }
   },
   mounted () {
-    if (!this.$root.authenticated) {
+    if (localStorage.getItem('access_token') && localStorage.getItem('access_token').length > 0) {
       this.$router.replace({ name: 'Home' })
     }
   }

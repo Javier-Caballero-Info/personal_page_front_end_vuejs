@@ -27,7 +27,7 @@ export default {
     onSubmit (evt) {
       evt.preventDefault()
       const loader = this.$loading.show()
-      ApiService.post('/' + this.lang + this.base_path, this.socialNetwork)
+      ApiService.postResource('/' + this.lang + this.base_path, this.socialNetwork)
         .then(response => {
           this.$router.push({name: 'IndexSocialNetwork'})
           loader.hide()

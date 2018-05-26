@@ -45,7 +45,7 @@ export default {
   methods: {
     loadList () {
       const loader = this.$loading.show()
-      ApiService.get('/' + this.lang + this.base_path)
+      ApiService.getResource('/' + this.lang + this.base_path)
         .then(response => {
           this.research_items = response.data.data
           loader.hide()
@@ -69,7 +69,7 @@ export default {
     },
     deleteResearch: function () {
       const loader = this.$loading.show()
-      ApiService.delete('/' + this.lang + this.base_path + '/' + this.selected_research.id)
+      ApiService.deleteResource('/' + this.lang + this.base_path + '/' + this.selected_research.id)
         .then(response => {
           loader.hide()
           this.$modal.hide('delete-research')

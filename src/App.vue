@@ -99,6 +99,7 @@ export default {
       localStorage.setItem('user', '')
       localStorage.setItem('access_token', '')
       localStorage.setItem('refresh_token', '')
+      this.$router.replace({ name: 'Login' })
     },
     changeLang (lang) {
       this.$root.lang = lang.value

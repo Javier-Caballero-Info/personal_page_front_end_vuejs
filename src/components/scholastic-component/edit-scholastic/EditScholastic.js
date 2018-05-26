@@ -20,7 +20,7 @@ export default {
   methods: {
     loadScholastic () {
       const loader = this.$loading.show()
-      ApiService.get('/' + this.lang + this.base_path + '/' + this.$route.params.id)
+      ApiService.getResource('/' + this.lang + this.base_path + '/' + this.$route.params.id)
         .then(response => {
           this.scholastic = response.data.data
           loader.hide()
@@ -38,7 +38,7 @@ export default {
     onSubmit (evt) {
       evt.preventDefault()
       const loader = this.$loading.show()
-      ApiService.put('/' + this.lang + this.base_path + '/' + this.$route.params.id, this.scholastic)
+      ApiService.putResource('/' + this.lang + this.base_path + '/' + this.$route.params.id, this.scholastic)
         .then(response => {
           this.$router.push({name: 'IndexScholastic'})
           loader.hide()

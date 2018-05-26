@@ -45,7 +45,7 @@ export default {
   methods: {
     loadList () {
       const loader = this.$loading.show()
-      ApiService.get('/' + this.lang + this.base_path)
+      ApiService.getResource('/' + this.lang + this.base_path)
         .then(response => {
           this.scholastic_items = response.data.data
           loader.hide()
@@ -69,7 +69,7 @@ export default {
     },
     deleteScholastic: function () {
       const loader = this.$loading.show()
-      ApiService.delete('/' + this.lang + this.base_path + '/' + this.selected_scholastic.id)
+      ApiService.deleteResource('/' + this.lang + this.base_path + '/' + this.selected_scholastic.id)
         .then(response => {
           loader.hide()
           this.$modal.hide('delete-scholastic')

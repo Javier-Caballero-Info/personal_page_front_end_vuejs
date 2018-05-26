@@ -28,7 +28,7 @@ export default {
     onSubmit (evt) {
       evt.preventDefault()
       const loader = this.$loading.show()
-      ApiService.post('/' + this.lang + this.base_path, this.scholastic)
+      ApiService.postResource('/' + this.lang + this.base_path, this.scholastic)
         .then(response => {
           this.$router.push({name: 'IndexScholastic'})
           loader.hide()

@@ -28,7 +28,7 @@ export default {
     onSubmit (evt) {
       evt.preventDefault()
       const loader = this.$loading.show()
-      ApiService.post('/' + this.lang + this.base_path, this.contact)
+      ApiService.postResource('/' + this.lang + this.base_path, this.contact)
         .then(response => {
           this.$router.push({name: 'IndexContact'})
           loader.hide()
