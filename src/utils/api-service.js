@@ -23,6 +23,8 @@ function catchAuthError (error, path, resolve, reject) {
               resolve(response)
             })
             .catch(() => {
+              localStorage.setItem('access_token', '')
+              Router.replace({ name: 'Login' })
               reject(new Error(''))
             })
         })
