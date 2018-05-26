@@ -12,6 +12,11 @@ export default {
       base_path: '/social-networks'
     }
   },
+  mounted () {
+    if (!this.$root.authenticated) {
+      this.$router.replace({ name: 'Login' })
+    }
+  },
   methods: {
     loadSocialNetwork () {
       const loader = this.$loading.show()

@@ -1,11 +1,13 @@
 <template>
   <div id="app">
 
-    <b-navbar toggleable="md" type="dark" variant="info">
+    <b-navbar toggleable="md" type="dark" variant="info" v-if="isAuthenticated()">
 
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-      <b-navbar-brand href="#/">{{ title }}</b-navbar-brand>
+      <b-navbar-brand href="#/">
+        <font-awesome-icon :icon="['fas', 'dna']" class="" /> {{ title }}
+      </b-navbar-brand>
 
       <b-collapse is-nav id="nav_collapse">
 
@@ -37,8 +39,10 @@
             <!-- Using button-content slot -->
             <template slot="button-content">
               <font-awesome-icon :icon="['far', 'user-circle']" size="lg" />
+              {{getUser()}}
             </template>
-            <b-dropdown-item href="#">Signout</b-dropdown-item>
+            <b-dropdown-item v-if="isAuthenticated" to="/login" v-on:click.native="logout()" replace>Sign out</b-dropdown-item>
+            <!-- <b-dropdown-item href="#">Signout</b-dropdown-item> -->
           </b-nav-item-dropdown>
         </b-navbar-nav>
 
@@ -51,7 +55,7 @@
       <notifications group="app" position="top right" :speed="1000"/>
 
       <transition name="fade" mode="out-in" tag="div">
-        <router-view/>
+        <router-view @authenticated="setAuthenticated" @user="setUser"/>
       </transition>
 
     </b-container>
@@ -79,22 +83,51 @@ export default {
       title: 'Personal Page Admin'
     }
   },
+  mounted () {
+    if (!this.$root.authenticated) {
+      this.$router.replace({ name: 'Login' })
+    }
+  },
   methods: {
     goBack () {
       window.history.length > 1
         ? this.$router.go(-1)
         : this.$router.push('/')
     },
+    logout () {
+      this.$root.authenticated = false
+      localStorage.setItem('user', '')
+      localStorage.setItem('access_token', '')
+      localStorage.setItem('refresh_token', '')
+    },
     changeLang (lang) {
       this.$root.lang = lang.value
       this.$root.lang_emoji = lang.emoji
       this.$root.$emit('langChanged')
+    },
+    isAuthenticated () {
+      // return this.$root.authenticated
+      const accessToken = localStorage.getItem('access_token')
+      return accessToken && accessToken.length > 0
+    },
+    setAuthenticated (status) {
+      this.$root.authenticated = status
+    },
+    getUser () {
+      // return this.$root.user
+      return localStorage.getItem('user')
+    },
+    setUser (user) {
+      this.$root.user = user
     }
   }
 }
 </script>
 
 <style>
+body, #app{
+  background-color: #d6d4d2 !important;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -12,6 +12,11 @@ export default {
       base_path: '/contacts'
     }
   },
+  mounted () {
+    if (!this.$root.authenticated) {
+      this.$router.replace({ name: 'Login' })
+    }
+  },
   methods: {
     loadContact () {
       const loader = this.$loading.show()

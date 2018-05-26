@@ -18,6 +18,11 @@ export default {
       base_path: '/social-networks'
     }
   },
+  mounted () {
+    if (!this.$root.authenticated) {
+      this.$router.replace({ name: 'Login' })
+    }
+  },
   methods: {
     onSubmit (evt) {
       evt.preventDefault()

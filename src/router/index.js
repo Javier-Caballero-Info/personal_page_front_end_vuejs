@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from '@/components/Home'
+import Login from '@/components/session-component/Login'
 
 import IndexSocialNetwork from '@/components/social-network-component/index-social-network/IndexSocialNetwork'
 import ShowSocialNetwork from '@/components/social-network-component/show-social-network/ShowSocialNetwork'
@@ -40,6 +42,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
 
     /*

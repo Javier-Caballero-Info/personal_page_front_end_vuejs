@@ -12,6 +12,11 @@ export default {
       base_path: '/researches'
     }
   },
+  mounted () {
+    if (!this.$root.authenticated) {
+      this.$router.replace({ name: 'Login' })
+    }
+  },
   methods: {
     loadResearch () {
       const loader = this.$loading.show()

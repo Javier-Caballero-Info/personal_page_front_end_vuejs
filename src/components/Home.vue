@@ -1,5 +1,5 @@
 <template>
-  <div class="hello mt-4 text-center">
+  <div id="hello" class="mt-4 text-center">
       <b-jumbotron class="m-1">
         <font-awesome-icon :icon="['fas', 'dna']" class="big-icon" />
         <hr/>
@@ -38,24 +38,27 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.big-icon{
+#hello .big-icon{
   font-size: 100px;
+  color: #17a2b8;
 }
-.modal-content{
+#hello .modal-content{
   border: none;
+}
+#hello .jumbotron{
+  background: none;
+}
+#hello .jumbotron button{
+  min-width: 300px;
+}
+#hello .jumbotron h1 {
+  color: rgb(44,42,43);
+}
+#hello .jumbotron h2 {
+  color: rgb(134,134,135);
+}
+#hello .card{
+  color: rgb(44,42,43);
+  background: rgb(191, 191, 193);
 }
 </style>

@@ -87,6 +87,11 @@ export default {
         })
     }
   },
+  mounted () {
+    if (!this.$root.authenticated) {
+      this.$router.replace({ name: 'Login' })
+    }
+  },
   created () {
     const self = this
     this.$root.$on('langChanged', function () {

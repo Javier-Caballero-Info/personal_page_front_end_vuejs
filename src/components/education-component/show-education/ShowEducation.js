@@ -12,6 +12,11 @@ export default {
       base_path: '/educations'
     }
   },
+  mounted () {
+    if (!this.$root.authenticated) {
+      this.$router.replace({ name: 'Login' })
+    }
+  },
   methods: {
     loadEducation () {
       const loader = this.$loading.show()

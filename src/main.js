@@ -50,7 +50,11 @@ new Vue({
       }
     ],
     lang: 'es',
-    lang_emoji: '🇪🇸'
+    lang_emoji: '🇪🇸',
+    authenticated: localStorage.getItem('access_token') && localStorage.getItem('access_token').length > 0,
+    user: '',
+    access_token: '',
+    refresh_token: ''
   },
   template: '<App/>'
 })
