@@ -44,6 +44,7 @@ export default {
           password: this.input.password
         },
         function (response) {
+          loader.hide()
           self.$emit('authenticated', true)
           self.$emit('user', response.user)
           self.$root.user = response.user
@@ -56,6 +57,7 @@ export default {
           self.$router.replace({ name: 'Home' })
         },
         function () {
+          loader.hide()
           self.$notify({
             group: 'app',
             title: 'Error',
@@ -64,6 +66,7 @@ export default {
           })
         })
       } else {
+        loader.hide()
         this.$notify({
           group: 'app',
           title: 'Error',
@@ -71,7 +74,6 @@ export default {
           text: 'A username and password must be present'
         })
       }
-      loader.hide()
     }
   },
   mounted () {

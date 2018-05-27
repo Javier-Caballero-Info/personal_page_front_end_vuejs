@@ -180,4 +180,10 @@ textarea{
     text-decoration: none;
     background-color: #17a2b8;
 }
+
+@media all and (max-width: 375px){
+    .navbar-brand .svg-inline--fa{
+        display: none;
+    }
+}
 </style>

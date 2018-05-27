@@ -13,12 +13,11 @@ function createAxios (authToken) {
 }
 
 function catchAuthError (error, path, resolve, reject) {
-  let authToken = localStorage.getItem('access_token')
   if (error.response) {
     if (error.response.status === 403 && error.response.data.error === 'E0102') {
       AuthService.renewToken()
         .then(response => {
-          createAxios(authToken).get(path)
+          createAxios(response.data.access_token).get(path)
             .then(response => {
               resolve(response)
             })

@@ -61,4 +61,17 @@ export default {
   color: rgb(44,42,43);
   background: rgb(191, 191, 193);
 }
+
+@media all and (max-width: 375px){
+    #hello .jumbotron .display-2 {
+        font-size: 3rem;
+    }
+    #hello .jumbotron .display-4 {
+        font-size: 1.5rem;
+    }
+    #hello .jumbotron p {
+        font-size: 1rem;
+    }
+}
+
 </style>
