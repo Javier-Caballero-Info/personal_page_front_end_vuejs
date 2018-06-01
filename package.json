@@ -1,8 +1,8 @@
 {
-  "name": "example-crud",
+  "name": "Personal_Page_Front_End-VueJs",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Javier Caballero <caballerojavier13@gmail.com>",
+  "author": "Javier Caballero <javierhernan@caballerogarcia.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
