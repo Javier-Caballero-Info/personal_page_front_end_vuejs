@@ -15,6 +15,7 @@
 - [Developing](https://github.com/Javier-Caballero-Info/personal_page_front_end_vuejs/tree/master#developing)
 - [Test](https://github.com/Javier-Caballero-Info/personal_page_front_end_vuejs/tree/master#test)
 - [Build](https://github.com/Javier-Caballero-Info/personal_page_front_end_vuejs/tree/master#build)
+- [Deploy](https://github.com/Javier-Caballero-Info/personal_page_front_end_vuejs/tree/master#deploy)
 - [Running with Docker](https://github.com/Javier-Caballero-Info/personal_page_front_end_vuejs/tree/master#running-with-docker)
 	- [Building the image](https://github.com/Javier-Caballero-Info/personal_page_front_end_vuejs/tree/master#building-the-image)
 	- [Starting up a container](https://github.com/Javier-Caballero-Info/personal_page_front_end_vuejs/tree/master#starting-up-a-container)
@@ -167,6 +168,38 @@ npm test
 ```
 npm run build
 ```
+
+## Deploy
+
+The deploy process is made with Firebase hosting service. For that process follow this steps:
+
+> This is my choice, the recommendation is still using Docker as all the project
+
+1. Build the app:
+
+    ```Bash
+    npm run build
+    ```
+
+2. Install Firebase CLI in your machine:
+
+    ```Bash
+    npm install -g firebase-tools
+    ```
+    
+3. Login into firebase:
+
+    ```Bash
+    firebase login
+    ```
+    
+4. Deploy the app:
+
+The configuration should be read form firebase.json file.
+    
+    ```Bash
+    firebase deploy
+    ```
 
 ## Running with Docker
 
