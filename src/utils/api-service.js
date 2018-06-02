@@ -12,27 +12,88 @@ function createAxios (authToken) {
   })
 }
 
-function catchAuthError (error, path, resolve, reject) {
+function catchError (error, resolve, reject) {
   if (error.response) {
-    if (error.response.status === 403 && error.response.data.error === 'E0102') {
-      AuthService.renewToken()
-        .then(response => {
-          createAxios(response.data.access_token).get(path)
-            .then(response => {
-              resolve(response)
-            })
-            .catch(() => {
-              localStorage.setItem('access_token', '')
-              Router.replace({ name: 'Login' })
-              reject(new Error(''))
-            })
-        })
+    if (error.response.status === 403) {
+      if (error.response.data.error === 'E0102') {
+        AuthService.renewToken()
+          .then(response => {
+            resolve(response)
+          })
+          .catch(() => {
+            localStorage.setItem('access_token', '')
+            Router.replace({name: 'Login'})
+            reject(new Error(''))
+          })
+      } else {
+        localStorage.setItem('access_token', '')
+        Router.replace({name: 'Login'})
+        reject(new Error(''))
+      }
     } else {
-      localStorage.setItem('access_token', '')
-      Router.replace({ name: 'Login' })
       reject(new Error(''))
     }
   }
+}
+
+function catchGetError (error, path, resolve, reject) {
+  catchError(error,
+    function () {
+      let authToken = localStorage.getItem('access_token')
+      createAxios(authToken).get(path)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(() => {
+          reject(new Error(''))
+        })
+    },
+    reject)
+}
+
+function catchPostError (error, path, body, resolve, reject) {
+  catchError(error,
+    function () {
+      let authToken = localStorage.getItem('access_token')
+      createAxios(authToken).post(path, body)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(() => {
+          reject(new Error(''))
+        })
+    },
+    reject)
+}
+
+function catchPutError (error, path, body, resolve, reject) {
+  catchError(error,
+    function () {
+      let authToken = localStorage.getItem('access_token')
+      createAxios(authToken).put(path, body)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(() => {
+          reject(new Error(''))
+        })
+    },
+    reject)
+}
+
+function catchDeleteError (error, path, resolve, reject) {
+  catchError(error,
+    function () {
+      let authToken = localStorage.getItem('access_token')
+      createAxios(authToken).delete(path)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(() => {
+          reject(new Error(''))
+        })
+    },
+    reject)
 }
 
 export default {
@@ -44,7 +105,7 @@ export default {
           resolve(response)
         })
         .catch(error => {
-          catchAuthError(error, path, resolve, reject)
+          catchGetError(error, path, resolve, reject)
         })
     })
   },
@@ -56,7 +117,7 @@ export default {
           resolve(response)
         })
         .catch(error => {
-          catchAuthError(error, path, resolve, reject)
+          catchPostError(error, path, body, resolve, reject)
         })
     })
   },
@@ -68,7 +129,7 @@ export default {
           resolve(response)
         })
         .catch(error => {
-          catchAuthError(error, path, resolve, reject)
+          catchPutError(error, path, body, resolve, reject)
         })
     })
   },
@@ -80,7 +141,7 @@ export default {
           resolve(response)
         })
         .catch(error => {
-          catchAuthError(error, path, resolve, reject)
+          catchDeleteError(error, path, resolve, reject)
         })
     })
   }

@@ -20,9 +20,9 @@ module.exports = `
           align-v="center" v-on:update:lang="loadList()">
           <template slot="name" slot-scope="row">
             <div style="min-width: 140px;">
-            <b-img-lazy :src="row.item.img" thumbnail rounded alt="Fluid image" style="height: 36px; width: 36px;"/>
-            <span class="ml-2">{{ row.item.name }}</span>
-          </div>
+              <b-img-lazy :src="row.item.img" thumbnail rounded alt="Fluid image" style="height: 36px; width: 36px;"/>
+              <span class="ml-2">{{ row.item.name }}</span>
+            </div>
           </template>
           <template slot="link" slot-scope="row" class="text-truncate">
             <a :href="row.item.link" target="_blank" class="text-truncate">{{ row.item.link }}</a>

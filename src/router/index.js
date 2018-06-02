@@ -34,6 +34,12 @@ import ShowScholastic from '@/components/scholastic-component/show-scholastic/Sh
 import CreateScholastic from '@/components/scholastic-component/create-scholastic/CreateScholastic'
 import EditScholastic from '@/components/scholastic-component/edit-scholastic/EditScholastic'
 
+import IndexUser from '@/components/user-component/index-user/IndexUser'
+import CreateUser from '@/components/user-component/create-user/CreateUser'
+import EditUser from '@/components/user-component/edit-user/EditUser'
+import MeUser from '@/components/user-component/me-user/MeUser'
+import PasswordUser from '@/components/user-component/password-user/PasswordUser'
+
 Vue.use(Router)
 
 export default new Router({
@@ -209,6 +215,38 @@ export default new Router({
       path: '/scholastic/:id/edit',
       name: 'EditScholastic',
       component: EditScholastic
+    },
+
+    /*
+    ======================
+    > Users <
+    ======================
+    */
+
+    {
+      path: '/users',
+      name: 'IndexUser',
+      component: IndexUser
+    },
+    {
+      path: '/user/new',
+      name: 'CreateUser',
+      component: CreateUser
+    },
+    {
+      path: '/user/:id/edit',
+      name: 'EditUser',
+      component: EditUser
+    },
+    {
+      path: '/me',
+      name: 'MeUser',
+      component: MeUser
+    },
+    {
+      path: '/change-password',
+      name: 'PasswordUser',
+      component: PasswordUser
     }
 
   ]

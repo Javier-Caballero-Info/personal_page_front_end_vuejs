@@ -20,6 +20,7 @@
           </b-nav-item-dropdown>
           <b-nav-item :to="{ name: 'IndexSocialNetwork'}"> Social Networks </b-nav-item>
           <b-nav-item :to="{ name: 'IndexContact'}"> Contacts </b-nav-item>
+          <b-nav-item :to="{ name: 'IndexUser'}"> Users </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -41,8 +42,10 @@
               <font-awesome-icon :icon="['far', 'user-circle']" size="lg" />
               {{getUser()}}
             </template>
+            <b-dropdown-item :to="{ name: 'MeUser'}">My Account</b-dropdown-item>
+            <b-dropdown-item :to="{ name: 'PasswordUser'}">Change password</b-dropdown-item>
+              <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item v-if="isAuthenticated" to="/login" v-on:click.native="logout()" replace>Sign out</b-dropdown-item>
-            <!-- <b-dropdown-item href="#">Signout</b-dropdown-item> -->
           </b-nav-item-dropdown>
         </b-navbar-nav>
 
