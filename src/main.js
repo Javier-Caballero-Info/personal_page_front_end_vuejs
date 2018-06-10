@@ -16,8 +16,11 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.min.css'
 import Notifications from 'vue-notification'
 import { Emoji } from 'emoji-mart-vue'
+import InputTag from 'vue-input-tag'
 
 Vue.config.productionTip = false
+
+Vue.component('input-tag', InputTag)
 
 Vue.use(BootstrapVue)
 
