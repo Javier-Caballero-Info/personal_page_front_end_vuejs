@@ -73,23 +73,8 @@ module.exports = `
                   <span v-show="errors.has('info')" class="help">{{ errors.first('info') }}</span>
                 </p>
               </b-form-group>
-
-              <b-form-group id="Contact_Img_Group"
-                      label="Image:"
-                      label-for="Contact_Img">
-                <b-form-input id="Contact_Img"
-                              name="img"
-                              type="url"
-                              v-model="contact.img"
-                              v-validate.initial="'required|url'"
-                              required
-                              :class="{'input': true, 'is-invalid': errors.has('img'), 'is-valid': !errors.has('img')}"
-                              placeholder="Image">
-                </b-form-input>
-                <p class="invalid-feedback">
-                  <span v-show="errors.has('img')" class="help">{{ errors.first('img') }}</span>
-                </p>
-              </b-form-group>
+                      
+              <file-chooser :fileUrl.sync="contact.img"></file-chooser>
 
               <b-form-group id="Contact_Order_Group"
                       label="Order:"

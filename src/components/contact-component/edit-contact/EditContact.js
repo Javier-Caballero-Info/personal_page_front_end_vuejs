@@ -2,6 +2,8 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 import ApiService from '../../../utils/api-service'
 
+import FileChooser from '../../../shared-components/FileChooser'
+
 export default {
   template: require('./template.html'),
   name: 'EditContact',
@@ -62,6 +64,7 @@ export default {
     })
   },
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    FileChooser
   }
 }

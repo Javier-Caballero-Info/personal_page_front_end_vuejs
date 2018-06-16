@@ -17,6 +17,7 @@ import 'vue-loading-overlay/dist/vue-loading.min.css'
 import Notifications from 'vue-notification'
 import { Emoji } from 'emoji-mart-vue'
 import InputTag from 'vue-input-tag'
+import VueResource from 'vue-resource'
 
 Vue.config.productionTip = false
 
@@ -25,6 +26,8 @@ Vue.component('input-tag', InputTag)
 Vue.use(BootstrapVue)
 
 Vue.use(Emoji)
+
+Vue.use(VueResource)
 
 Vue.use(VeeValidate, {fieldsBagName: 'formFields'})
 
