@@ -72,7 +72,7 @@ module.exports = `
               </p>
             </b-form-group>
             
-            <file-chooser :fileUrl.sync="contact.img"></file-chooser>
+            <file-chooser :fileUrl.sync="contact.img" basePath="contacts"></file-chooser>
 
             <b-form-group id="Contact_Order_Group"
                     label="Order:"

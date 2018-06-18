@@ -45,6 +45,8 @@ import ShowScholastic from '@/components/scholastic-component/show-scholastic/Sh
 import CreateScholastic from '@/components/scholastic-component/create-scholastic/CreateScholastic'
 import EditScholastic from '@/components/scholastic-component/edit-scholastic/EditScholastic'
 
+import FileComponent from '@/components/file-component/FileComponent'
+
 Vue.use(Router)
 
 export default new Router({
@@ -58,6 +60,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/files',
+      name: 'Files',
+      component: FileComponent
     },
 
     /*

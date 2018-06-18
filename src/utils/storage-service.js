@@ -5,19 +5,17 @@ import Router from '../router'
 function createAxios (authToken) {
   return axios.create({
     baseURL: process.env.STORAGE_URI,
+    crossDomain: true,
     headers: {
-      'authorization': 'Bearer ' + authToken,
-      'Access-Control-Allow-Origin': '*'
+      'authorization': 'Bearer ' + authToken
     }
   })
 }
 
 function catchError (error, resolve, reject) {
   if (error.response) {
-    console.log(error)
     if (error.response.status === 401) {
-      console.log(error.response)
-      if (error.response.message === 'Token is expired') {
+      if (error.response.data.message === 'Token is expired') {
         AuthService.renewToken()
           .then(response => {
             resolve(response)
@@ -35,8 +33,6 @@ function catchError (error, resolve, reject) {
     } else {
       reject(new Error(''))
     }
-  } else {
-    console.log(error)
   }
 }
 
@@ -94,15 +90,18 @@ export default {
           resolve(response)
         })
         .catch(error => {
-          console.log('Puto')
           catchGetError(error, path, resolve, reject)
         })
     })
   },
-  uploadFile (path, body) {
+  uploadFile (path, body, context) {
     let authToken = localStorage.getItem('access_token')
     return new Promise((resolve, reject) => {
-      createAxios(authToken).post(path, body)
+      createAxios(authToken).post(path, body, {
+        onUploadProgress: function (progressEvent) {
+          context.$emit('fileProgressUpload', (Math.round((progressEvent.loaded * 100) / progressEvent.total)))
+        }
+      })
         .then(response => {
           resolve(response)
         })

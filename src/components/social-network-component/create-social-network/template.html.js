@@ -55,22 +55,7 @@ module.exports = `
               </p>
             </b-form-group>
 
-            <b-form-group id="socialNetwork_Img_Group"
-                    label="Image:"
-                    label-for="socialNetwork_Img">
-              <b-form-input id="socialNetwork_Img"
-                            name="img"
-                            type="url"
-                            v-model="socialNetwork.img"
-                            v-validate.initial="'required|url'"
-                            required
-                            :class="{'input': true, 'is-invalid': errors.has('img'), 'is-valid': !errors.has('img')}"
-                            placeholder="Image">
-              </b-form-input>
-              <p class="invalid-feedback">
-                <span v-show="errors.has('img')" class="help">{{ errors.first('img') }}</span>
-              </p>
-            </b-form-group>
+            <file-chooser :fileUrl.sync="socialNetwork.img" basePath="social-networks"></file-chooser>
 
             <b-form-group id="socialNetwork_Order_Group"
                     label="Order:"

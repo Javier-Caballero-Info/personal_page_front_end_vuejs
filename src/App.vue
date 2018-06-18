@@ -21,6 +21,7 @@
           <b-nav-item :to="{ name: 'IndexSocialNetwork'}"> Social Networks </b-nav-item>
           <b-nav-item :to="{ name: 'IndexContact'}"> Contacts </b-nav-item>
           <b-nav-item :to="{ name: 'IndexPortfolio'}"> Portfolios </b-nav-item>
+          <b-nav-item :to="{ name: 'Files'}"> Files </b-nav-item>
           <b-nav-item :to="{ name: 'IndexUser'}"> Users </b-nav-item>
         </b-navbar-nav>
 
@@ -196,11 +197,6 @@ textarea{
 .vue-input-tag-wrapper{
     border: 1px solid #ced4da !important;
     border-radius: 0.25rem !important;
-}
-
-.input-group > .form-control:not(:last-child), .input-group > .custom-select:not(:last-child){
-    border-top-right-radius: 0.25rem !important;
-    border-bottom-right-radius: 0.25rem !important;
 }
 
 @media all and (max-width: 375px){
