@@ -31,8 +31,10 @@ function catchError (error, resolve, reject) {
         reject(new Error(''))
       }
     } else {
-      reject(new Error(''))
+      reject(new Error('Something got wrong'))
     }
+  }else {
+    reject(new Error('Something got wrong'))
   }
 }
 
