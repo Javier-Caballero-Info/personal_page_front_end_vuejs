@@ -5,9 +5,9 @@ import Router from '../router'
 function createAxios (authToken) {
   return axios.create({
     baseURL: process.env.STORAGE_URI,
-    crossDomain: true,
+    // crossDomain: true,
     headers: {
-      'authorization': 'Bearer ' + authToken
+      'Authorization': 'Bearer ' + authToken
     }
   })
 }

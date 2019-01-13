@@ -6,7 +6,7 @@ function createAxios (authToken) {
   return axios.create({
     baseURL: process.env.API_URI,
     headers: {
-      'authorization': 'Bearer ' + authToken,
+      'Authorization': 'Bearer ' + authToken,
       'Content-Type': 'application/json'
     }
   })
@@ -33,7 +33,7 @@ function catchError (error, resolve, reject) {
     } else {
       reject(new Error('Something got wrong'))
     }
-  }else {
+  } else {
     reject(new Error('Something got wrong'))
   }
 }

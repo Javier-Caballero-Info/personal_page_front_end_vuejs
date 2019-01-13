@@ -6,7 +6,7 @@ function createAxios (authToken) {
   return axios.create({
     baseURL: process.env.AUTH_URI,
     headers: {
-      'authorization': 'Bearer ' + authToken,
+      'Authorization': 'Bearer ' + authToken,
       'Content-Type': 'application/json'
     }
   })

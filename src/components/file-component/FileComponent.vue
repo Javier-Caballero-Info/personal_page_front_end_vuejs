@@ -1,73 +1,73 @@
 <template>
-    <div class='mt-4'>
-        <h1 class='title text-left'>
-            <small><font-awesome-icon :icon="['fas', 'rocket']" /> </small>
-            Files
-        </h1>
-        <hr/>
-        <b-card class='mb-4'>
-            <b-button v-on:click="listAllFiles()" variant="outline-secondary" v-b-tooltip.hover title="Reload">
-                <font-awesome-icon :icon="['fas', 'sync']" /> Reload list
-            </b-button>
-            <b-button v-on:click="openFileChooserModal()" class="float-right" variant="outline-success">
-                <font-awesome-icon :icon="['fas', 'plus']" /> Upload file
-            </b-button>
-        </b-card>
-        <b-card class='mb-4'>
-            <div class="row">
-                <div class="col">
-                    <b-form-group label="Folder:">
-                        <b-form-select :options="folders"
-                                       v-on:change="listAllFiles()"
-                                       v-model="selectFolder">
-                        </b-form-select>
-                    </b-form-group>
-                </div>
-            </div>
-        </b-card>
-        <b-card>
-            <b-alert variant="warning text-center" class="mt-3" show v-show="files.length === 0">
-                The selected folder is empty
-            </b-alert>
-            <ul class="list-unstyled" v-show="files.length > 0">
-                <li class="media" v-for="f of files" v-bind:key="f.path" @click="choicePicture(f.url)">
-                    <img class="img-fluid img-thumbnail mr-3" :src='f.url' alt="Generic placeholder image" height="64px" width="64px">
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1 text-truncate">{{f.name}}</h5>
-                        <p class="text-muted text-truncate">{{f.path}}</p>
-                    </div>
-                    <b-button variant="outline-danger" class="float-right" v-on:click="deleteFile(f.path)">
-                        <font-awesome-icon :icon="['fas', 'trash']" />
-                    </b-button>
-                </li>
-            </ul>
-        </b-card>
-        <!-- Modal Component -->
-        <b-modal id="FileChooserModal" ref="fileUploaderModal"
-                 hide-footer size="lg" title="Upload a picture"
-                 no-close-on-backdrop no-close-on-esc hide-header-close>
-            <form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
-                <h1>Upload images</h1>
-                <b-form-group label="Folder:">
-                    <b-form-select :options="folders"
-                                   v-model="selectFolder">
-                    </b-form-select>
-                </b-form-group>
-                <div class="dropbox" v-if="!isSaving">
-                    <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
-                           accept="image/*" class="input-file">
-                    <p v-if="isInitial">
-                        Drag your file here to begin<br> or click to browse
-                    </p>
-                </div>
-                <b-progress :value="progressUpload" :max="100" show-progress show-value animated v-if="isSaving"></b-progress>
-                <hr>
-                <b-button variant="outline-secondary btn-block" v-on:click="closeFileChooserModal">
-                    Cancel
-                </b-button>
-            </form>
-        </b-modal>
-    </div>
+  <div class='mt-4'>
+    <h1 class='title text-left'>
+      <small><font-awesome-icon :icon="['fas', 'rocket']" /> </small>
+      Files
+    </h1>
+    <hr/>
+    <b-card class='mb-4'>
+      <b-button v-on:click="listAllFiles()" variant="outline-secondary" v-b-tooltip.hover title="Reload">
+        <font-awesome-icon :icon="['fas', 'sync']" /> Reload list
+      </b-button>
+      <b-button v-on:click="openFileChooserModal()" class="float-right" variant="outline-success">
+        <font-awesome-icon :icon="['fas', 'plus']" /> Upload file
+      </b-button>
+    </b-card>
+    <b-card class='mb-4'>
+      <div class="row">
+        <div class="col">
+          <b-form-group label="Folder:">
+            <b-form-select :options="folders"
+                           v-on:change="listAllFiles()"
+                           v-model="selectFolder">
+            </b-form-select>
+          </b-form-group>
+        </div>
+      </div>
+    </b-card>
+    <b-card>
+      <b-alert variant="warning text-center" class="mt-3" show v-show="files.length === 0">
+        The selected folder is empty
+      </b-alert>
+      <ul class="list-unstyled" v-show="files.length > 0">
+        <li class="media" v-for="f of files" v-bind:key="f.path" @click="choicePicture(f.url)">
+          <img class="img-fluid img-thumbnail mr-3" :src='f.url' alt="Generic placeholder image" height="64px" width="64px">
+          <div class="media-body">
+            <h5 class="mt-0 mb-1 text-truncate">{{f.name}}</h5>
+            <p class="text-muted text-truncate">{{f.path}}</p>
+          </div>
+          <b-button variant="outline-danger" class="float-right" v-on:click="deleteFile(f.path)">
+            <font-awesome-icon :icon="['fas', 'trash']" />
+          </b-button>
+        </li>
+      </ul>
+    </b-card>
+    <!-- Modal Component -->
+    <b-modal id="FileChooserModal" ref="fileUploaderModal"
+             hide-footer size="lg" title="Upload a picture"
+             no-close-on-backdrop no-close-on-esc hide-header-close>
+      <form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
+        <h1>Upload images</h1>
+        <b-form-group label="Folder:">
+          <b-form-select :options="folders"
+                         v-model="selectFolder">
+          </b-form-select>
+        </b-form-group>
+        <div class="dropbox" v-if="!isSaving">
+          <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
+                 accept="image/*" class="input-file">
+          <p v-if="isInitial">
+            Drag your file here to begin<br> or click to browse
+          </p>
+        </div>
+        <b-progress :value="progressUpload" :max="100" show-progress show-value animated v-if="isSaving"></b-progress>
+        <hr>
+        <b-button variant="outline-secondary btn-block" v-on:click="closeFileChooserModal">
+          Cancel
+        </b-button>
+      </form>
+    </b-modal>
+  </div>
 </template>
 
 <script>
@@ -85,7 +85,8 @@ export default {
     return {
       folders: [
         'contacts',
-        'social-networks'
+        'social-networks',
+        'home'
       ],
       fieldName: 'upload',
       selectFolder: 'contacts',
@@ -202,7 +203,7 @@ export default {
         .map(x => {
           formData.append(fieldName, fileList[x], fileList[x].name)
         })
-      // save it
+        // save it
       this.save(formData)
     }
   },
@@ -223,52 +224,52 @@ export default {
 </script>
 
 <style scoped>
-    .dropbox {
-        outline: 2px dashed grey; /* the dash box */
-        outline-offset: -10px;
-        background: #cecece;
-        color: dimgray;
-        padding: 10px 10px;
-        min-height: 200px; /* minimum height */
-        position: relative;
-        cursor: pointer;
-    }
+  .dropbox {
+    outline: 2px dashed grey; /* the dash box */
+    outline-offset: -10px;
+    background: #cecece;
+    color: dimgray;
+    padding: 10px 10px;
+    min-height: 200px; /* minimum height */
+    position: relative;
+    cursor: pointer;
+  }
 
-    .input-file {
-        opacity: 0; /* invisible but it's there! */
-        width: 100%;
-        height: 200px;
-        position: absolute;
-        cursor: pointer;
-    }
+  .input-file {
+    opacity: 0; /* invisible but it's there! */
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    cursor: pointer;
+  }
 
-    .dropbox:hover {
-        background: #dcdcdc;
-    }
+  .dropbox:hover {
+    background: #dcdcdc;
+  }
 
-    .dropbox p {
-        font-size: 1.2em;
-        text-align: center;
-        padding: 50px 0;
-    }
-    .media {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: start;
-        border: solid 1px #c7c7c7;
-        align-items: flex-start;
-        margin-bottom: 20px;
-        padding: 5px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .media:hover {
-        background: whitesmoke;
-        border-color: #a7a7a7;
-    }
-    .media-body {
-         flex: 1;
-         width: 100%;
-         overflow: auto;
-    }
+  .dropbox p {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 50px 0;
+  }
+  .media {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    border: solid 1px #c7c7c7;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .media:hover {
+    background: whitesmoke;
+    border-color: #a7a7a7;
+  }
+  .media-body {
+    flex: 1;
+    width: 100%;
+    overflow: auto;
+  }
 </style>

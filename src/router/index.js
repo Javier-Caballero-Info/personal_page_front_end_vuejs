@@ -45,6 +45,11 @@ import ShowScholastic from '@/components/scholastic-component/show-scholastic/Sh
 import CreateScholastic from '@/components/scholastic-component/create-scholastic/CreateScholastic'
 import EditScholastic from '@/components/scholastic-component/edit-scholastic/EditScholastic'
 
+import IndexMenu from '@/components/menu-component/index-menu/IndexMenu'
+import ShowMenu from '@/components/menu-component/show-menu/ShowMenu'
+import CreateMenu from '@/components/menu-component/create-menu/CreateMenu'
+import EditMenu from '@/components/menu-component/edit-menu/EditMenu'
+
 import FileComponent from '@/components/file-component/FileComponent'
 
 Vue.use(Router)
@@ -285,6 +290,33 @@ export default new Router({
       path: '/scholastic/:id/edit',
       name: 'EditScholastic',
       component: EditScholastic
+    },
+
+    /*
+     ======================
+     > Menu <
+     ======================
+     */
+
+    {
+      path: '/menu',
+      name: 'IndexMenu',
+      component: IndexMenu
+    },
+    {
+      path: '/menu/new',
+      name: 'CreateMenu',
+      component: CreateMenu
+    },
+    {
+      path: '/menu/:id',
+      name: 'ShowMenu',
+      component: ShowMenu
+    },
+    {
+      path: '/menu/:id/edit',
+      name: 'EditMenu',
+      component: EditMenu
     }
 
   ]
