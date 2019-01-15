@@ -17,10 +17,11 @@
       <div class="row">
         <div class="col">
           <b-form-group label="Folder:">
-            <b-form-select :options="folders"
-                           v-on:change="listAllFiles()"
-                           v-model="selectFolder">
-            </b-form-select>
+            <select v-model="selectFolder" class="form-control custom-select" v-on:change="listAllFiles">
+              <option v-for="item in folders" v-bind:value="item" :key="item">
+                {{ item }}
+              </option>
+            </select>
           </b-form-group>
         </div>
       </div>
@@ -126,6 +127,7 @@ export default {
   methods: {
     listAllFiles: function () {
       const loader = this.$loading.show()
+      console.log(this.selectFolder)
       StorageService.listFiles('/' + this.selectFolder)
         .then(response => {
           this.files = response.data.files

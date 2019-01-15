@@ -40,7 +40,7 @@ export default {
     onSubmit (evt) {
       evt.preventDefault()
       const loader = this.$loading.show()
-      ApiService.putResource('/' + this.lang + this.base_path + '/' + this.$route.params.id, this.home)
+      ApiService.putResource('/' + this.lang + this.base_path, this.home)
         .then(response => {
           this.$router.push({name: 'IndexHome'})
           loader.hide()
