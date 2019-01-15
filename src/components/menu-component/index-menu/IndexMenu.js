@@ -18,6 +18,11 @@ export default {
           label: 'Target'
         },
         {
+          key: 'is_displayed',
+          label: 'Displayed',
+          class: 'text-center'
+        },
+        {
           key: 'order',
           label: 'Order',
           class: 'text-center'

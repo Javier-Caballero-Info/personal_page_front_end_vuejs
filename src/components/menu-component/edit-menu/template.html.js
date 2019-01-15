@@ -52,6 +52,17 @@ module.exports = `
           </p>
 
         </b-form-group>
+
+        <b-form-group id="Menu_Is_Displayed_Group"
+                label=""
+                label-for="Menu_Is_Displayed">
+          <b-form-checkbox id="Menu_Is_Displayed"
+                       v-model="menu.is_displayed"
+                       value="true"
+                       unchecked-value="false">
+            Is displayed
+          </b-form-checkbox>
+        </b-form-group>
         
         <b-form-group id="menu_Order_Group"
                 label="Order:"

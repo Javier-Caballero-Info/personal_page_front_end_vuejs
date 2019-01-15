@@ -8,10 +8,9 @@ export default {
   data () {
     return {
       menu: {
-        'time': '',
-        'company': '',
-        'position': '',
-        'description': '',
+        'text': '',
+        'target': '',
+        'is_displayed': true,
         'lang': '',
         'order': 0
       },

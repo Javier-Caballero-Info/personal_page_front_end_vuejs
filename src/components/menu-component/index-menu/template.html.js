@@ -19,6 +19,9 @@ module.exports = `
       <div class="table-responsive" v-if="menu_items.length > 0">
         <b-table striped hover bordered responsive :items="menu_items" :fields="menu_fields" 
           align-v="center" v-on:update:lang="loadList()">
+          <template slot="is_displayed" slot-scope="row">
+            {{row.item.is_displayed ? 'Yes' : 'No'}}
+          </template>
           <template slot="actions" slot-scope="row">
             <div style="min-width:118px">
               <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
