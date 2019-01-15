@@ -22,7 +22,7 @@
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 export default {
-  name: 'Home',
+  name: 'Index',
   components: {
     FontAwesomeIcon
   },

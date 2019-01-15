@@ -6,12 +6,12 @@ import FileChooser from '../../../shared-components/FileChooser'
 
 export default {
   template: require('./template.html'),
-  name: 'EditSocialNetwork',
+  name: 'EditHome',
   data () {
     return {
-      socialNetwork: null,
+      home: null,
       lang: this.$root.lang,
-      base_path: '/social-networks'
+      base_path: '/home'
     }
   },
   mounted () {
@@ -20,11 +20,11 @@ export default {
     }
   },
   methods: {
-    loadSocialNetwork () {
+    loadHome () {
       const loader = this.$loading.show()
-      ApiService.getResource('/' + this.lang + this.base_path + '/' + this.$route.params.id)
+      ApiService.getResource('/' + this.lang + this.base_path)
         .then(response => {
-          this.socialNetwork = response.data.data
+          this.home = response.data.data
           loader.hide()
         })
         .catch(() => {
@@ -40,9 +40,9 @@ export default {
     onSubmit (evt) {
       evt.preventDefault()
       const loader = this.$loading.show()
-      ApiService.putResource('/' + this.lang + this.base_path + '/' + this.$route.params.id, this.socialNetwork)
+      ApiService.putResource('/' + this.lang + this.base_path + '/' + this.$route.params.id, this.home)
         .then(response => {
-          this.$router.push({name: 'IndexSocialNetwork'})
+          this.$router.push({name: 'IndexHome'})
           loader.hide()
         })
         .catch(() => {
@@ -50,17 +50,17 @@ export default {
             group: 'app',
             title: 'Error',
             type: 'error',
-            text: 'Error on save Social Network please try again in a few minutes.'
+            text: 'Error on save Home please try again in a few minutes.'
           })
           loader.hide()
         })
     }
   },
   created () {
-    this.loadSocialNetwork()
+    this.loadHome()
     const self = this
     this.$root.$on('langChanged', function () {
-      self.$router.push({name: 'IndexSocialNetwork'})
+      self.$router.push({name: 'IndexHome'})
     })
   },
   components: {

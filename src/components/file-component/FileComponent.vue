@@ -84,12 +84,12 @@ export default {
   data: function () {
     return {
       folders: [
-        'contacts',
-        'social-networks',
-        'home'
+        'Contacts',
+        'Social_Networks',
+        'Home'
       ],
       fieldName: 'upload',
-      selectFolder: 'contacts',
+      selectFolder: 'Contacts',
       file: null,
       fileUploaderModal: null,
       files: [],

@@ -2,22 +2,14 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 import ApiService from '../../../utils/api-service'
 
-import FileChooser from '../../../shared-components/FileChooser'
-
 export default {
   template: require('./template.html'),
-  name: 'CreateSocialNetwork',
+  name: 'ShowHome',
   data () {
     return {
-      socialNetwork: {
-        'img': '',
-        'link': '',
-        'name': '',
-        'lang': '',
-        'order': 0
-      },
+      home: null,
       lang: this.$root.lang,
-      base_path: '/social-networks'
+      base_path: '/home'
     }
   },
   mounted () {
@@ -26,12 +18,11 @@ export default {
     }
   },
   methods: {
-    onSubmit (evt) {
-      evt.preventDefault()
+    loadHome () {
       const loader = this.$loading.show()
-      ApiService.postResource('/' + this.lang + this.base_path, this.socialNetwork)
+      ApiService.getResource('/' + this.lang + this.base_path)
         .then(response => {
-          this.$router.push({name: 'IndexSocialNetwork'})
+          this.home = response.data.data
           loader.hide()
         })
         .catch(() => {
@@ -39,22 +30,20 @@ export default {
             group: 'app',
             title: 'Error',
             type: 'error',
-            text: 'Error on save Social Network please try again in a few minutes.'
+            text: 'Can\'t load the information, please try again in a few minutes'
           })
           loader.hide()
         })
     }
   },
   created () {
+    this.loadHome()
     const self = this
-    self.socialNetwork.lang = this.lang.toUpperCase()
     this.$root.$on('langChanged', function () {
-      self.lang = this.lang
-      self.socialNetwork.lang = this.lang.toUpperCase()
+      self.$router.push({name: 'IndexHome'})
     })
   },
   components: {
-    FontAwesomeIcon,
-    FileChooser
+    FontAwesomeIcon
   }
 }

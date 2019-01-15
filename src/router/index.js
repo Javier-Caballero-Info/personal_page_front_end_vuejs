@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from '@/components/Home'
+import Index from '@/components/Index'
 import Login from '@/components/session-component/Login'
 
 import IndexUser from '@/components/user-component/index-user/IndexUser'
@@ -50,6 +50,9 @@ import ShowMenu from '@/components/menu-component/show-menu/ShowMenu'
 import CreateMenu from '@/components/menu-component/create-menu/CreateMenu'
 import EditMenu from '@/components/menu-component/edit-menu/EditMenu'
 
+import ShowHome from '@/components/home-component/show-home/ShowHome'
+import EditHome from '@/components/home-component/edit-home/EditHome'
+
 import FileComponent from '@/components/file-component/FileComponent'
 
 Vue.use(Router)
@@ -58,8 +61,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'Index',
+      component: Index
     },
     {
       path: '/login',
@@ -317,6 +320,23 @@ export default new Router({
       path: '/menu/:id/edit',
       name: 'EditMenu',
       component: EditMenu
+    },
+
+    /*
+     ======================
+     > Home <
+     ======================
+     */
+
+    {
+      path: '/home',
+      name: 'ShowHome',
+      component: ShowHome
+    },
+    {
+      path: '/home/edit',
+      name: 'EditHome',
+      component: EditHome
     }
 
   ]

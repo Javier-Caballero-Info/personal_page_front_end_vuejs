@@ -55,7 +55,7 @@ module.exports = `
               </p>
             </b-form-group>
 
-            <file-chooser :fileUrl.sync="socialNetwork.img" basePath="social-networks"></file-chooser>
+            <file-chooser :fileUrl.sync="socialNetwork.img" basePath="Social_Networks"></file-chooser>
 
             <b-form-group id="socialNetwork_Order_Group"
                     label="Order:"

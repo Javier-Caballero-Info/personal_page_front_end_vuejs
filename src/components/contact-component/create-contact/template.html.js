@@ -71,8 +71,8 @@ module.exports = `
                 <span v-show="errors.has('info')" class="help">{{ errors.first('info') }}</span>
               </p>
             </b-form-group>
-            
-            <file-chooser :fileUrl.sync="contact.img" basePath="contacts"></file-chooser>
+                      
+            <file-chooser :fileUrl.sync="contact.img" basePath="Contacts"></file-chooser>
 
             <b-form-group id="Contact_Order_Group"
                     label="Order:"

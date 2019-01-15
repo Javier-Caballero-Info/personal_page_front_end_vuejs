@@ -22,6 +22,7 @@
           <b-nav-item :to="{ name: 'IndexContact'}"> Contacts </b-nav-item>
           <b-nav-item :to="{ name: 'IndexPortfolio'}"> Portfolios </b-nav-item>
           <b-nav-item :to="{ name: 'Files'}"> Files </b-nav-item>
+          <b-nav-item :to="{ name: 'ShowHome'}"> Home </b-nav-item>
           <b-nav-item :to="{ name: 'IndexMenu'}"> Menu </b-nav-item>
           <b-nav-item :to="{ name: 'IndexUser'}"> Users </b-nav-item>
         </b-navbar-nav>
