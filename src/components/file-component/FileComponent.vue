@@ -127,7 +127,6 @@ export default {
   methods: {
     listAllFiles: function () {
       const loader = this.$loading.show()
-      console.log(this.selectFolder)
       StorageService.listFiles('/' + this.selectFolder)
         .then(response => {
           this.files = response.data.files
