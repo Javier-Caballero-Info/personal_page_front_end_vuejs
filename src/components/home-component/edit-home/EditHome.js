@@ -42,7 +42,7 @@ export default {
       const loader = this.$loading.show()
       ApiService.putResource('/' + this.lang + this.base_path, this.home)
         .then(response => {
-          this.$router.push({name: 'IndexHome'})
+          this.$router.push({name: 'ShowHome'})
           loader.hide()
         })
         .catch(() => {
