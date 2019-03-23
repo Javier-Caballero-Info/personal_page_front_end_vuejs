@@ -45,6 +45,11 @@ import ShowScholastic from '@/components/scholastic-component/show-scholastic/Sh
 import CreateScholastic from '@/components/scholastic-component/create-scholastic/CreateScholastic'
 import EditScholastic from '@/components/scholastic-component/edit-scholastic/EditScholastic'
 
+import IndexGift from '@/components/gift-component/index-gift/IndexGift'
+import ShowGift from '@/components/gift-component/show-gift/ShowGift'
+import CreateGift from '@/components/gift-component/create-gift/CreateGift'
+import EditGift from '@/components/gift-component/edit-gift/EditGift'
+
 import IndexMenu from '@/components/menu-component/index-menu/IndexMenu'
 import ShowMenu from '@/components/menu-component/show-menu/ShowMenu'
 import CreateMenu from '@/components/menu-component/create-menu/CreateMenu'
@@ -293,6 +298,33 @@ export default new Router({
       path: '/scholastic/:id/edit',
       name: 'EditScholastic',
       component: EditScholastic
+    },
+
+    /*
+     ======================
+     > Gift <
+     ======================
+     */
+
+    {
+      path: '/gifts',
+      name: 'IndexGift',
+      component: IndexGift
+    },
+    {
+      path: '/gifts/new',
+      name: 'CreateGift',
+      component: CreateGift
+    },
+    {
+      path: '/gifts/:id',
+      name: 'ShowGift',
+      component: ShowGift
+    },
+    {
+      path: '/gifts/:id/edit',
+      name: 'EditGift',
+      component: EditGift
     },
 
     /*
